@@ -10,6 +10,7 @@ https://api.XXXXXXXX.com/api/OP_API_XXXXXXX_XXX/overview
 data-platform-payment-requisition-sqlには、sqlの設定ファイルとして以下のsqlファイルが含まれています。
 
 * data-platform-payment-requisition-sql-payment-requisition-data.sql （データ連携基盤 支払依頼 - 支払依頼データ）
+* data-platform-payment-requisition-sql-payment-requisition-pdf-data.sql （データ連携基盤 支払依頼 - PDFデータ）
 
 ## MySQLのセットアップ / Kubernetesの設定 / SQLテーブルの作成方法
 MySQLのセットアップ / Kubernetesの設定 / 具体的なSQLテーブルの作成方法、については、[mysql-kube](https://github.com/latonaio/mysql-kube)を参照ください。
