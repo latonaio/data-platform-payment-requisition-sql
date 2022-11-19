@@ -4,6 +4,7 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
   `PayerPaymentDate`                     date NOT NULL,
   `PayerPaymentRequisitionID`            int(6) NOT NULL,
   `PaymentReqnStatus`                    varchar(2) NOT NULL,
+  `AcceptanceNoByFinInst`                varchar(40) DEFAULT NULL,
   `PaytReqnAmtInTransCrcy`               float(13) NOT NULL,
   `Currency`                             varchar(3) NOT NULL,
   `PaymentMethod`                        varchar(1) NOT NULL,
@@ -18,8 +19,8 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
   `PayerFinInstControlKey`               varchar(2) NOT NULL,
   `PayerFinInstAccount`                  varchar(18) NOT NULL,
   `PayerFinInstAccountName`              varchar(40) NOT NULL,
-  `PayeeFinInstName`                     varchar(100) NOT NULL,
-  `PayeeFinInstBranchName`               varchar(100) NOT NULL,
+  `PayerFinInstName`                     varchar(100) NOT NULL,
+  `PayerFinInstBranchName`               varchar(100) NOT NULL,
   `CreationDateTime`                     datetime DEFAULT NULL,
   `ChangedOnDateTime`                    datetime DEFAULT NULL,
 
