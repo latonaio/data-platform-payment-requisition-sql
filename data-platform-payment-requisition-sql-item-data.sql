@@ -5,12 +5,17 @@ CREATE TABLE `data_platform_payment_requisition_item_data`
   `PayerPaymentRequisitionID`            int(6) NOT NULL,
   `PayerPaymentRequisitionItem`          int(6) NOT NULL,
   `Payee`                                int(12) NOT NULL,
+  `BillFromParty`                        int(12) NOT NULL,
+  `BillToParty`                          int(12) NOT NULL,
+  `Buyer`                                int(12) NOT NULL,
+  `Seller`                               int(12) NOT NULL,
+  `InvoiceDocument`                      int(16) DEFAULT NULL,
   `PayeeFinInstCountry`                  varchar(3) NOT NULL,
   `PayeeFinInstCode`                     varchar(10) NOT NULL,
   `PayeeFinInstBranchCode`               varchar(10) NOT NULL,
   `PayeeFinInstFullCode`                 varchar(15) NOT NULL,
   `PayeeFinInstSWIFTCode`                varchar(11) DEFAULT NULL,
-　`PaytReqnItemAmtInTransCrcy`           float(13) NOT NULL,
+  `PaytReqnItemAmtInTransCrcy`           float(13) NOT NULL,
   `PayeeInternalFinInstCustomerID`       int(12) NOT NULL,
   `PayeeInternalFinInstAccountID`        int(12) NOT NULL,
   `PayeeFinInstControlKey`               varchar(2) NOT NULL,
@@ -27,6 +32,11 @@ CREATE TABLE `data_platform_payment_requisition_item_data`
 
     CONSTRAINT `DataPlatformPaymentRequisitionItemData_fk` FOREIGN KEY (`Payer`, `PayerPaymentDate`, `PayerPaymentRequisitionID`) REFERENCES `data_platform_payment_requisition_header_data` (`Payer`, `PayerPaymentDate`, `PayerPaymentRequisitionID`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataPayee_fk` FOREIGN KEY (`Payee`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemDataBillFromParty_fk` FOREIGN KEY (`BillFromParty`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemDataBillToParty_fk` FOREIGN KEY (`BillToParty`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemDataBuyer_fk` FOREIGN KEY (`Buyer`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemDataSeller_fk` FOREIGN KEY (`Seller`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemDataInvoiceDocument_fk` FOREIGN KEY (`InvoiceDocument`) REFERENCES `data_platform_invoice_document_header_data` (`InvoiceDocument`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataFinInstAccount_fk` FOREIGN KEY (`PayeeFinInstCountry`, `PayeeFinInstCode`, `PayeeFinInstBranchCode`, `PayeeFinInstFullCode`, `PayeeInternalFinInstCustomerID`, `PayeeInternalFinInstAccountID`) REFERENCES `data_platform_fin_inst_acccount_item_data` (`FinInstCountry`, `FinInstCode`, `FinInstBranchCode`, `FinInstFullCode`, `InternalFinInstCustomerID`, `InternalFinInstAccountID`)
 
 ) ENGINE = InnoDB
