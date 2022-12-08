@@ -1,8 +1,8 @@
 CREATE TABLE `data_platform_payment_requisition_header_data`
 (
+  `PayerPaymentRequisitionID`            int(16) NOT NULL,
   `Payer`                                int(12) NOT NULL,
   `PayerPaymentDate`                     date NOT NULL,
-  `PayerPaymentRequisitionID`            int(6) NOT NULL,
   `PaymentReqnStatus`                    varchar(2) NOT NULL,
   `AcceptanceNoByFinInst`                varchar(40) DEFAULT NULL,
   `PaytReqnAmtInTransCrcy`               float(13) NOT NULL,
@@ -23,16 +23,16 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
   `PayerFinInstAccountName`              varchar(40) NOT NULL,
   `PayerFinInstName`                     varchar(100) NOT NULL,
   `PayerFinInstBranchName`               varchar(100) NOT NULL,
-  `PaymentApplicantCode`                 varchar(10) NOT NULL,
+  `PayerFinInstCustomerIDByFinInst`      varchar(10) NOT NULL,
+  `PaymentRequisitionIsCanceled`         tinyint(1) 
   `CreationDateTime`                     datetime DEFAULT NULL,
   `ChangedOnDateTime`                    datetime DEFAULT NULL,
 
-    PRIMARY KEY (`Payer`, `PayerPaymentDate`, `PayerPaymentRequisitionID`),
+    PRIMARY KEY (`PayerPaymentRequisitionID`),
 
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayer_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataCurrency_fk` FOREIGN KEY (`Currency`) REFERENCES `data_platform_currency_currency_data` (`Currency`),
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataFinInstAccount_fk` FOREIGN KEY (`PayerFinInstCountry`, `PayerFinInstCode`, `PayerFinInstBranchCode`, `PayerFinInstFullCode`, `PayerInternalFinInstCustomerID`, `PayerInternalFinInstAccountID`) REFERENCES `data_platform_fin_inst_acccount_item_data` (`FinInstCountry`, `FinInstCode`, `FinInstBranchCode`, `FinInstFullCode`, `InternalFinInstCustomerID`, `InternalFinInstAccountID`)
-
 
 ) ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4;

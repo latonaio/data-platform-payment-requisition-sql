@@ -1,9 +1,9 @@
 CREATE TABLE `data_platform_payment_requisition_item_data`
 (
+  `PayerPaymentRequisitionID`            int(16) NOT NULL,
+  `PayerPaymentRequisitionItem`          int(6) NOT NULL,
   `Payer`                                int(12) NOT NULL,
   `PayerPaymentDate`                     date NOT NULL,
-  `PayerPaymentRequisitionID`            int(6) NOT NULL,
-  `PayerPaymentRequisitionItem`          int(6) NOT NULL,
   `Payee`                                int(12) NOT NULL,
   `BillFromParty`                        int(12) NOT NULL,
   `BillToParty`                          int(12) NOT NULL,
@@ -28,9 +28,9 @@ CREATE TABLE `data_platform_payment_requisition_item_data`
   `CreationDateTime`                     datetime DEFAULT NULL,
   `ChangedOnDateTime`                    datetime DEFAULT NULL,
 
-    PRIMARY KEY (`Payer`, `PayerPaymentDate`, `PayerPaymentRequisitionID`, `PayerPaymentRequisitionItem`),
+    PRIMARY KEY (`PayerPaymentRequisitionID`, `PayerPaymentRequisitionItem`),
 
-    CONSTRAINT `DataPlatformPaymentRequisitionItemData_fk` FOREIGN KEY (`Payer`, `PayerPaymentDate`, `PayerPaymentRequisitionID`) REFERENCES `data_platform_payment_requisition_header_data` (`Payer`, `PayerPaymentDate`, `PayerPaymentRequisitionID`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemData_fk` FOREIGN KEY (`PayerPaymentRequisitionID`) REFERENCES `data_platform_payment_requisition_header_data` (`PayerPaymentRequisitionID`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataPayee_fk` FOREIGN KEY (`Payee`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataBillFromParty_fk` FOREIGN KEY (`BillFromParty`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataBillToParty_fk` FOREIGN KEY (`BillToParty`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
