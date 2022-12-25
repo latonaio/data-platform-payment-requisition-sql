@@ -32,7 +32,7 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
 
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayer_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataCurrency_fk` FOREIGN KEY (`Currency`) REFERENCES `data_platform_currency_currency_data` (`Currency`),
-    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataFinInstAccount_fk` FOREIGN KEY (`PayerFinInstCountry`, `PayerFinInstCode`, `PayerFinInstBranchCode`, `PayerFinInstFullCode`, `PayerInternalFinInstCustomerID`, `PayerInternalFinInstAccountID`) REFERENCES `data_platform_fin_inst_acccount_item_data` (`FinInstCountry`, `FinInstCode`, `FinInstBranchCode`, `FinInstFullCode`, `InternalFinInstCustomerID`, `InternalFinInstAccountID`)
+    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayerHouseBankAccount_fk` FOREIGN KEY (`Payer`, `HouseBank`, `HouseBankAccount`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`, `HouseBank`, `HouseBankAccount`),
 
 ) ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4;
