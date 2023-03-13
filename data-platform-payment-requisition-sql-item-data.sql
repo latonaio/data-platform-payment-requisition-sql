@@ -38,7 +38,7 @@ CREATE TABLE `data_platform_payment_requisition_item_data`
     CONSTRAINT `DataPlatformPaymentRequisitionItemData_fk` FOREIGN KEY (`PayerPaymentRequisitionID`) REFERENCES `data_platform_payment_requisition_header_data` (`PayerPaymentRequisitionID`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataSupplyChainRelationshipPaymentID_fk` FOREIGN KEY (`SupplyChainRelationshipID`, `SupplyChainRelationshipBillingID`, `SupplyChainRelationshipPaymentID`, `Buyer`, `Seller`, `BillToParty`, `BillFromParty`, `Payer`, `Payee`) REFERENCES `data_platform_supply_chain_relationship_payment_relation_data` (`SupplyChainRelationshipID`, `SupplyChainRelationshipBillingID`, `SupplyChainRelationshipPaymentID`, `Buyer`, `Seller`, `BillToParty`, `BillFromParty`, `Payer`, `Payee`),
     CONSTRAINT `DataPlatformPaymentRequisitionItemDataInvoiceDocument_fk` FOREIGN KEY (`InvoiceDocument`) REFERENCES `data_platform_invoice_document_header_data` (`InvoiceDocument`),
-    CONSTRAINT `DataPlatformPaymentRequisitionItemDataPayeeHouseBankAccount_fk` FOREIGN KEY (`Payee`, `HouseBank`, `HouseBankAccount`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`, `HouseBank`, `HouseBankAccount`),
+    CONSTRAINT `DataPlatformPaymentRequisitionItemDataPayeeHouseBankAccount_fk` FOREIGN KEY (`Payee`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`),
 
 ) ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4;

@@ -24,7 +24,7 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
   `PayerFinInstName`                     varchar(100) NOT NULL,
   `PayerFinInstBranchName`               varchar(100) NOT NULL,
   `PayerFinInstCustomerIDByFinInst`      varchar(10) NOT NULL,
-  `PaymentRequisitionIsCanceled`         tinyint(1) 
+  `PaymentRequisitionIsCancelled`         tinyint(1) DEFAULT NULL,
   `CreationDateTime`                     datetime DEFAULT NULL,
   `ChangedOnDateTime`                    datetime DEFAULT NULL,
 
@@ -32,7 +32,8 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
 
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayer_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
     CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataCurrency_fk` FOREIGN KEY (`Currency`) REFERENCES `data_platform_currency_currency_data` (`Currency`),
-    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayerHouseBankAccount_fk` FOREIGN KEY (`Payer`, `HouseBank`, `HouseBankAccount`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`, `HouseBank`, `HouseBankAccount`),
+    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPaymentMethod_fk` FOREIGN KEY (`PaymentMethod`) REFERENCES `data_platform_payment_method_payment_method_data` (`PaymentMethod`),
+    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayerHouseBankAccount_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`),
 
 ) ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4;
