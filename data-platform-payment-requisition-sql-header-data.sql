@@ -24,16 +24,16 @@ CREATE TABLE `data_platform_payment_requisition_header_data`
   `PayerFinInstName`                     varchar(100) NOT NULL,
   `PayerFinInstBranchName`               varchar(100) NOT NULL,
   `PayerFinInstCustomerIDByFinInst`      varchar(10) NOT NULL,
-  `PaymentRequisitionIsCancelled`         tinyint(1) DEFAULT NULL,
-  `CreationDateTime`                     datetime DEFAULT NULL,
-  `ChangedOnDateTime`                    datetime DEFAULT NULL,
+  `CreationDate`                         date NOT NULL,
+  `LastChangedDate`                      date NOT NULL,
+  `IsCancelled`                          tinyint(1) DEFAULT NULL,
 
     PRIMARY KEY (`PayerPaymentRequisitionID`),
 
-    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayer_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
-    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataCurrency_fk` FOREIGN KEY (`Currency`) REFERENCES `data_platform_currency_currency_data` (`Currency`),
-    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPaymentMethod_fk` FOREIGN KEY (`PaymentMethod`) REFERENCES `data_platform_payment_method_payment_method_data` (`PaymentMethod`),
-    CONSTRAINT `DataPlatformPaymentRequisitionHeaderDataPayerHouseBankAccount_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`),
+    CONSTRAINT `DPFMPaymentRequisitionHeaderDataPayer_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DPFMPaymentRequisitionHeaderDataCurrency_fk` FOREIGN KEY (`Currency`) REFERENCES `data_platform_currency_currency_data` (`Currency`),
+    CONSTRAINT `DPFMPaymentRequisitionHeaderDataPaymentMethod_fk` FOREIGN KEY (`PaymentMethod`) REFERENCES `data_platform_payment_method_payment_method_data` (`PaymentMethod`),
+    CONSTRAINT `DPFMPaymentRequisitionHeaderDataPayerHouseBankAccount_fk` FOREIGN KEY (`Payer`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`)
 
 ) ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4;

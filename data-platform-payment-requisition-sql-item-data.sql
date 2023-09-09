@@ -30,15 +30,16 @@ CREATE TABLE `data_platform_payment_requisition_item_data`
   `PayeeFinInstBranchName`               varchar(100) NOT NULL,
   `PayerAccountingDocument`              int(16) DEFAULT NULL,
   `PayerAccountingDocumentItem`          int(3) DEFAULT NULL,
-  `CreationDateTime`                     datetime DEFAULT NULL,
-  `ChangedOnDateTime`                    datetime DEFAULT NULL,
+  `CreationDate`                         date NOT NULL,
+  `LastChangedDate`                      date NOT NULL,
+  `IsCancelled`                          tinyint(1) DEFAULT NULL,
 
     PRIMARY KEY (`PayerPaymentRequisitionID`, `PayerPaymentRequisitionItem`),
 
-    CONSTRAINT `DataPlatformPaymentRequisitionItemData_fk` FOREIGN KEY (`PayerPaymentRequisitionID`) REFERENCES `data_platform_payment_requisition_header_data` (`PayerPaymentRequisitionID`),
-    CONSTRAINT `DataPlatformPaymentRequisitionItemDataSupplyChainRelationshipPaymentID_fk` FOREIGN KEY (`SupplyChainRelationshipID`, `SupplyChainRelationshipBillingID`, `SupplyChainRelationshipPaymentID`, `Buyer`, `Seller`, `BillToParty`, `BillFromParty`, `Payer`, `Payee`) REFERENCES `data_platform_supply_chain_relationship_payment_relation_data` (`SupplyChainRelationshipID`, `SupplyChainRelationshipBillingID`, `SupplyChainRelationshipPaymentID`, `Buyer`, `Seller`, `BillToParty`, `BillFromParty`, `Payer`, `Payee`),
-    CONSTRAINT `DataPlatformPaymentRequisitionItemDataInvoiceDocument_fk` FOREIGN KEY (`InvoiceDocument`) REFERENCES `data_platform_invoice_document_header_data` (`InvoiceDocument`),
-    CONSTRAINT `DataPlatformPaymentRequisitionItemDataPayeeHouseBankAccount_fk` FOREIGN KEY (`Payee`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`),
+    CONSTRAINT `DPFMPaymentRequisitionItemData_fk` FOREIGN KEY (`PayerPaymentRequisitionID`) REFERENCES `data_platform_payment_requisition_header_data` (`PayerPaymentRequisitionID`),
+    CONSTRAINT `DPFMPaymentRequisitionItemDataSCRPaymentID_fk` FOREIGN KEY (`SupplyChainRelationshipID`, `SupplyChainRelationshipBillingID`, `SupplyChainRelationshipPaymentID`, `Buyer`, `Seller`, `BillToParty`, `BillFromParty`, `Payer`, `Payee`) REFERENCES `data_platform_scr_payment_relation_data` (`SupplyChainRelationshipID`, `SupplyChainRelationshipBillingID`, `SupplyChainRelationshipPaymentID`, `Buyer`, `Seller`, `BillToParty`, `BillFromParty`, `Payer`, `Payee`),
+    CONSTRAINT `DPFMPaymentRequisitionItemDataInvoiceDocument_fk` FOREIGN KEY (`InvoiceDocument`) REFERENCES `data_platform_invoice_document_header_data` (`InvoiceDocument`),
+    CONSTRAINT `DPFMPaymentRequisitionItemDataPayeeHouseBankAccount_fk` FOREIGN KEY (`Payee`) REFERENCES `data_platform_house_bank_house_bank_data` (`BusinessPartner`)
 
 ) ENGINE = InnoDB
 DEFAULT CHARSET = utf8mb4;
